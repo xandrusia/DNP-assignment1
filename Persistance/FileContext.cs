@@ -5,6 +5,7 @@ using Assignment1.Models;
 
 namespace Assignment1.Persistance
 {
+    //can load from and save to
     public class FileContext
     {
         public IList<Family> Families { get; private set; }
@@ -19,9 +20,10 @@ namespace Assignment1.Persistance
             Adults = File.Exists(adultsFile) ? ReadData<Adult>(adultsFile) : new List<Adult>();
         }
 
+        //for now read adults, later -> change to family
         private IList<T> ReadData<T>(string s)
         {
-            using (var jsonReader = File.OpenText(familiesFile))
+            using (var jsonReader = File.OpenText(adultsFile))
             {
                 return JsonSerializer.Deserialize<List<T>>(jsonReader.ReadToEnd());
             }
