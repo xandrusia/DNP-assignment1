@@ -48,3 +48,23 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+    
+    #adultsTable tr:nth-child(3n+1)
+    {
+        background-color: #a49dcb;
+    }
+
+    #adultsTable tr:nth-child(3n+2)
+    {
+        background-color: #b9c6ce;
+    }
+    
+    #adultsTable tr:nth-child(3n)
+    {
+        background-color: #e7e5e4;
+    }
+    
+    #adultsTable tr:hover
+    {
+        background: antiquewhite;
+    }

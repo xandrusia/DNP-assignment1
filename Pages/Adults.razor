@@ -1,0 +1,65 @@
+﻿@page "/Adults"
+@using Assignment1.Models
+@using Assignment1.Data
+@using Assignment1.Persistance
+@inject IFileAdapter FileAdapter
+
+<h3>Adults</h3>
+
+    @if (adults == null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else if (!adults.Any())
+    {
+        <p>
+            <em>No Adults items exist. Please add some.</em>
+        </p>
+    }
+    else
+    {
+        <table id="adultsTable" class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th>Adult ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Job title</th>
+                <th>Salary</th>
+                <th>Hair color</th>
+                <th>Eye color</th>
+                <th>Weight</th>
+                <th>Height</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var adult in adults)
+            {
+                <tr>
+                    <td>@adult.Id</td>
+                    <td>@adult.FirstName&ensp;@adult.LastName</td>
+                    <td>@adult.Age</td>
+                    <td>@adult.Sex</td>
+                    <td>@adult.JobTitle.JobTitle</td>
+                    <td>@adult.JobTitle.Salary</td>
+                    <td>@adult.HairColor</td>
+                    <td>@adult.EyeColor</td>
+                    <td>@adult.Weight</td>
+                    <td>@adult.Height</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+
+@code {
+    private IList<Adult> adults;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        adults = FileAdapter.GetAdults();
+    }
+}

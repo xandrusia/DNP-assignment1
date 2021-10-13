@@ -5,7 +5,7 @@ using Assignment1.Models;
 namespace Assignment1.Persistance
 {
     //here will be all necessary checking for restricted access
-    public class FileAdapter
+    public class FileAdapter : IFileAdapter
     {
         private FileContext myFileContext = new FileContext();
 
@@ -20,7 +20,7 @@ namespace Assignment1.Persistance
 
         public Adult FilterById(int id)
         {
-            return (Adult)myFileContext.Adults.Where(p => p.Id == id);
+            return (Adult)myFileContext.Adults.Where(p => p.Id == id);  
         }
 
         public IList<Adult> FilterByFirstName(string name)
@@ -95,6 +95,11 @@ namespace Assignment1.Persistance
             myFileContext.Adults.Insert(p.Id, p);
             myFileContext.SaveChanges();
         }
-        
+
+        public IList<Adult> GetAdults()
+        {
+            List<Adult> tmp = new List<Adult>(myFileContext.Adults);
+            return tmp;
+        }
     }
 }
